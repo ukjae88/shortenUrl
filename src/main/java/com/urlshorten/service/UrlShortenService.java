@@ -29,7 +29,7 @@ public class UrlShortenService {
 		// Get URL -> ID
 		Long id = urlShortenRepository.getIdByUrl(url);
 		if(id == null) {
-			// URL 이 없는 경우, URL 저장
+			// Save URL
 			id = urlShortenRepository.saveUrl(url);
 		}
 		

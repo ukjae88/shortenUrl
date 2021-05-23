@@ -21,14 +21,14 @@ class UrlShortenServiceTest {
 		url = url.replace("http://", "").replace("https://", "");
 		
 		// [when]
-		// URL -> ID 조회
+		// Get URL -> ID
 		Long id = urlShortenRepository.getIdByUrl(url);
 		if(id == null) {
-			// URL 이 없는 경우, URL 저장
+			// Save URL
 			id = urlShortenRepository.saveUrl(url);
 		}
 		
-		// ID -> Encoding -> Shorten URL 생성
+		// ID -> Encoding -> Shorten URL
 		String shortenUrl = Base62Converter.encoding(id);
 		
 		// [then]
@@ -43,13 +43,13 @@ class UrlShortenServiceTest {
 		String shortenUrl = "B";
 		
 		// [when]
-		// Shorten URL -> Decoding -> ID 생성
+		// Shorten URL -> Decoding -> ID
 		Long id = Base62Converter.decoding(shortenUrl);
 		
-		// Request Count 증가
+		// Request Count++
 		urlShortenRepository.setRequestCnt(id, urlShortenRepository.getRequestCnt(id)+1);
 		
-		// ID -> URL 조회
+		// Get ID -> URL
 		String url = urlShortenRepository.getUrlById(id);
 		
 		// [then]
