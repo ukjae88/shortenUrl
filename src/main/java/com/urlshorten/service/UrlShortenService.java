@@ -15,25 +15,25 @@ public class UrlShortenService {
 	private final UrlShortenRepository urlShortenRepository;
 	
 	/*
-	 * Original URL -> Shorten URL ´ÜÃà
+	 * Original URL -> Shorten URL ë‹¨ì¶•
 	 */
 	public UrlVO shortenUrl(String url) {
 		
-		// http ¹®ÀÚ¿­ Á¦°Å
+		// http ë¬¸ìžì—´ ì œê±°
 		url = url.replace("http://", "").replace("https://", "");
 		
-		// ¹®ÀÚ¿­ÀÌ ºñ¾îÀÖ´Â °æ¿ì ¸®ÅÏ
+		// ë¬¸ìžì—´ì´ ë¹„ì–´ìžˆëŠ” ê²½ìš° ë¦¬í„´
 		if("".equals(url))
 			return null;
 		
-		// URL -> ID Á¶È¸
+		// URL -> ID ì¡°íšŒ
 		Long id = urlShortenRepository.getIdByUrl(url);
 		if(id == null) {
-			// URL ÀÌ ¾ø´Â °æ¿ì, URL ÀúÀå
+			// URL ì´ ì—†ëŠ” ê²½ìš°, URL ì €ìž¥
 			id = urlShortenRepository.saveUrl(url);
 		}
 		
-		// ID -> Encoding -> Shorten URL »ý¼º
+		// ID -> Encoding -> Shorten URL ìƒì„±
 		String shortenUrl = Base62Converter.encoding(id);
 		
 		UrlVO vo = new UrlVO();
@@ -44,28 +44,28 @@ public class UrlShortenService {
 	}
 	
 	/*
-	 * Shorten URL -> Original URL Á¶È¸
+	 * Shorten URL -> Original URL ì¡°íšŒ
 	 */
 	public String getUrl(String shortenUrl) {
-		// Shorten URL -> Decoding -> ID »ý¼º
+		// Shorten URL -> Decoding -> ID ìƒì„±
 		Long id = Base62Converter.decoding(shortenUrl);
 		
-		// Request Count Áõ°¡
+		// Request Count ì¦ê°€
 		addRequestCnt(id);
 		
-		// ID -> URL Á¶È¸
+		// ID -> URL ì¡°íšŒ
 		return urlShortenRepository.getUrlById(id);
 	}
 	
 	/*
-	 * ID -> Request Count Áõ°¡
+	 * ID -> Request Count ì¦ê°€
 	 */
 	public void addRequestCnt(Long id) {
 		urlShortenRepository.setRequestCnt(id, urlShortenRepository.getRequestCnt(id)+1);
 	}
 	
 	/*
-	 * ID -> Request Count Á¶È¸
+	 * ID -> Request Count ì¡°íšŒ
 	 */
 	public Long getRequestCnt(Long id) {
 		return urlShortenRepository.getRequestCnt(id);
