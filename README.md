@@ -20,12 +20,13 @@
 	- URL 입력폼 화면 접속 : http://{호스트IP}:8080/   
 	- Shortening URL 입력형식 : http://{호스트IP}:8080/{Shortening key}   
 	  (Shortening URL 의 호스트 IP 는 모르는 상황이므로 localhost 로 설정해 놓음)   
-## 과제구현 완료   
+   
+## 과제구현   
   1. URL 입력폼 제공 및 결과 출력 완료   
   2. URL Shortening Key는 8 Character 이내로 생성 완료 : BASE62 인코딩 방식 사용   
   3. 동일한 URL에 대한 요청은 동일한 Shortening Key로 응답 완료   
-  4. 동일한 URL에 대한 요청 수 정보를 저장 완료 : 요청 수 메모리상 Map 저장구조 형태로 저장   
+  4. 동일한 URL에 대한 요청 수 정보를 저장 완료 : 요청 수 메모리상 Map 구조 형태로 저장   
   5. Shortening된 URL을 요청받으면 원래 URL로 리다이렉트 완료   
-  6. Database 사용은 필수 아님 -> URL 정보 메모리상 Map 저장구조 형태로 저장   
+  6. Database 사용은 필수 아님 -> URL 정보 메모리상 Map 구조 형태로 저장   
    
 ***
