@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+	<title>URL Shortening</title>
+</head>
+<body>
+	<H1>[Musinsa] URL Shortening</H1>
+	<p>▣ Input URL to shorten</p>
+	<br>
+	<form method="post" action="/">
+		<input type="text" name="url" placeholder="http://www.google.com" style="width:400px;font-size:30px;margin-left:30px"/>
+		<input type="submit" value="Click" style="width:150x;font-size:30px;"/>
+	</form>
+	<br>
+	<p>▣ Result to shorten URL</p>
+	<p th:text="${urlVO?.shortenUrl}" style="font-size:30px;margin-left:30px;"></p>
+</body>
+</html>
