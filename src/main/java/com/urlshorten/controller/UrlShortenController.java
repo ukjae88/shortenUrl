@@ -42,7 +42,7 @@ public class UrlShortenController {
 		
 		// Set Port, Host Address
 		String port = environment.getProperty("local.server.port");	
-		String hostAddress = InetAddress.getLocalHost().getHostAddress();
+		String hostAddress = "localhost";
 		
 		// Set Attribute
 		String shortenUrl = "http://" + hostAddress + ":" + port + "/" + vo.getShortenUrl();
