@@ -15,7 +15,7 @@ public class MapUrlShortenRepository implements UrlShortenRepository{
 	private Map<Long, Long> mapRequest = new HashMap<>();
 	
 	/*
-	 * URL 저장
+	 * Save URL
 	 */
 	public Long saveUrl(String url) {
 		Long seq = (long)mapUrl.size()+1;
@@ -24,7 +24,7 @@ public class MapUrlShortenRepository implements UrlShortenRepository{
 	}
 	
 	/*
-	 * URL -> ID 조회
+	 * Get URL -> ID
 	 */
 	public Long getIdByUrl(String url) {
 		Long result = null;
@@ -38,7 +38,7 @@ public class MapUrlShortenRepository implements UrlShortenRepository{
 	}
 	
 	/*
-	 * ID -> URL 조회
+	 * Get ID -> URL
 	 */
 	public String getUrlById(Long id) {
 		return mapUrl.get(id);

@@ -15,25 +15,25 @@ public class UrlShortenService {
 	private final UrlShortenRepository urlShortenRepository;
 	
 	/*
-	 * Original URL -> Shorten URL 단축
+	 * Original URL -> Shorten URL
 	 */
 	public UrlVO shortenUrl(String url) {
 		
-		// http 문자열 제거
+		// Remove http String
 		url = url.replace("http://", "").replace("https://", "");
 		
-		// 문자열이 비어있는 경우 리턴
+		// If null, return
 		if("".equals(url))
 			return null;
 		
-		// URL -> ID 조회
+		// Get URL -> ID
 		Long id = urlShortenRepository.getIdByUrl(url);
 		if(id == null) {
 			// URL 이 없는 경우, URL 저장
 			id = urlShortenRepository.saveUrl(url);
 		}
 		
-		// ID -> Encoding -> Shorten URL 생성
+		// ID -> Encoding -> Shorten URL
 		String shortenUrl = Base62Converter.encoding(id);
 		
 		UrlVO vo = new UrlVO();
@@ -44,13 +44,13 @@ public class UrlShortenService {
 	}
 	
 	/*
-	 * Shorten URL -> Original URL 조회
+	 * Get Shorten URL -> Original URL
 	 */
 	public String getUrl(String shortenUrl) {
-		// Shorten URL -> Decoding -> ID 생성
+		// Shorten URL -> Decoding -> ID
 		Long id = Base62Converter.decoding(shortenUrl);
 		
-		// Request Count 증가
+		// Request Count++
 		addRequestCnt(id);
 		
 		// ID -> URL 조회
@@ -58,14 +58,14 @@ public class UrlShortenService {
 	}
 	
 	/*
-	 * ID -> Request Count 증가
+	 * ID -> Request Count++
 	 */
 	public void addRequestCnt(Long id) {
 		urlShortenRepository.setRequestCnt(id, urlShortenRepository.getRequestCnt(id)+1);
 	}
 	
 	/*
-	 * ID -> Request Count 조회
+	 * Get ID -> Request Count
 	 */
 	public Long getRequestCnt(Long id) {
 		return urlShortenRepository.getRequestCnt(id);
