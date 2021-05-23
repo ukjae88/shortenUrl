@@ -7,7 +7,7 @@
    
 ## 실행설명   
   1. 리눅스 접속 후 github 에 있는 프로젝트 배포 -> shortenUrl 디렉토리 생성   
-    - git clone https://github.com/ukjae88/shortenUrl.git   
+    - git 프로젝트 가져오기 : git clone https://github.com/ukjae88/shortenUrl.git   
   2. shortenUrl 디렉토리 위치에서 프로젝트 빌드하기 -> build 디렉토리 생성   
     - 명령어 권한 설정 : chmod 777 ./gradlew   
 	- 테스트수행 : ./gradlew test  
